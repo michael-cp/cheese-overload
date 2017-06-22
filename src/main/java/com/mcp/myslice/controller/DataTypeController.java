@@ -21,29 +21,29 @@ public class DataTypeController {
 	@Autowired
 	private DataTypeRepository dataTypeRepository;
 	
-	@RequestMapping(value = "datatype" , method = RequestMethod.GET)
+	@RequestMapping(value = "datatypes" , method = RequestMethod.GET)
 	public List<DataType> list(){
 		return dataTypeRepository.findAll();
 	}
 
-	@RequestMapping(value = "datatype" , method = RequestMethod.POST)
+	@RequestMapping(value = "datatypes" , method = RequestMethod.POST)
 	public DataType create(@RequestBody DataType dataType){
 		return dataTypeRepository.saveAndFlush(dataType);
 	}
 	
-	@RequestMapping(value = "datatype/{id}" , method = RequestMethod.GET)
+	@RequestMapping(value = "datatypes/{id}" , method = RequestMethod.GET)
 	public DataType get(@PathVariable Long id){
 		return dataTypeRepository.findOne(id);
 	}
 
-	@RequestMapping(value = "datatype/{id}" , method = RequestMethod.PUT)
+	@RequestMapping(value = "datatypes/{id}" , method = RequestMethod.PUT)
 	public DataType update(@PathVariable Long id, @RequestBody DataType dataType){
 		DataType existingDataType = dataTypeRepository.findOne(id);
 		BeanUtils.copyProperties(dataType, existingDataType);
 		return dataTypeRepository.saveAndFlush(existingDataType);
 	}
 	
-	@RequestMapping(value = "datatype/{id}" , method = RequestMethod.DELETE)
+	@RequestMapping(value = "datatypes/{id}" , method = RequestMethod.DELETE)
 	public DataType delete(@PathVariable Long id, @RequestBody DataType dataType){
 		DataType existingDataType = dataTypeRepository.findOne(id);
 		dataTypeRepository.delete(existingDataType);
