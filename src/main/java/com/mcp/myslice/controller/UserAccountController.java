@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mcp.myslice.model.UserAccount;
 import com.mcp.myslice.repository.UserAccountRepository;
 import com.mcp.myslice.utils.ApplicationConstants;
+import com.mcp.myslice.utils.Encryptor;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -20,6 +21,8 @@ public class UserAccountController {
 
 	@Autowired
 	private UserAccountRepository userAccountRepository;
+	
+	private Encryptor encryptor;
 
 	@RequestMapping(value = "useraccounts" , method = RequestMethod.GET)
 	public List<UserAccount> list(){
@@ -28,6 +31,7 @@ public class UserAccountController {
 
 	@RequestMapping(value = "useraccounts" , method = RequestMethod.POST)
 	public UserAccount create(@RequestBody UserAccount userAccount){
+		userAccount.setPassword(encryptor.getSecurePassword(userAccount.getPassword()));
 		return userAccountRepository.saveAndFlush(userAccount);
 	}
 
@@ -39,6 +43,8 @@ public class UserAccountController {
 	@RequestMapping(value = "useraccounts/{id}" , method = RequestMethod.PUT)
 	public UserAccount update(@PathVariable Long id, @RequestBody UserAccount userAccount){
 		UserAccount existingUserAccount = userAccountRepository.findOne(id);
+		
+		userAccount.setPassword(encryptor.getSecurePassword(userAccount.getPassword()));
 		BeanUtils.copyProperties(userAccount, existingUserAccount);
 		return userAccountRepository.saveAndFlush(existingUserAccount);
 	}

@@ -8,6 +8,12 @@ import org.springframework.stereotype.Component;
 import com.mcp.myslice.model.DataType;
 import com.mcp.myslice.repository.DataTypeRepository;
 
+/**
+ * 
+ * Data types are composition of static data. 
+ *
+ */
+
 @Component
 public class DataTypeLoader implements ApplicationListener<ContextRefreshedEvent> {
 

@@ -28,7 +28,7 @@ public class SizeNPrice {
 	@Column(name = "active")
 	private String active = "Y";
 	
-	private String productId;
+	private Long productId;
 
 
 	public Long getSizeNPrizeId() {
@@ -71,15 +71,15 @@ public class SizeNPrice {
 		this.active = active;
 	}
 
-	public String getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 
-	public SizeNPrice(String sizeCode, String price, String productId) {
+	public SizeNPrice(String sizeCode, String price, Long productId) {
 		super();
 		this.sizeCode = sizeCode;
 		this.price = price;
