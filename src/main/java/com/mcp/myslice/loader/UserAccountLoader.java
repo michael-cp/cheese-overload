@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.mcp.myslice.model.UserAccount;
 import com.mcp.myslice.repository.UserAccountRepository;
+import com.mcp.myslice.utils.Encryptor;
 
 /**
  * 
@@ -17,6 +18,7 @@ import com.mcp.myslice.repository.UserAccountRepository;
 @Component
 public class UserAccountLoader  implements ApplicationListener<ContextRefreshedEvent>{
 
+	private Encryptor encryptor = new Encryptor();
 	private UserAccountRepository userAccountRepository;
 
 	@Autowired
@@ -29,9 +31,9 @@ public class UserAccountLoader  implements ApplicationListener<ContextRefreshedE
 		// TODO Auto-generated method stub
 
 		if(userAccountRepository.findAll().isEmpty()){
-			userAccountRepository.save(new UserAccount("admin@gmail.com", "qwerty", "System", "Admin"));
+			userAccountRepository.save(new UserAccount("admin@gmail.com", encryptor.getSecurePassword("qwerty"), "System", "Admin"));
 		}
-
+ 
 	}
 
 

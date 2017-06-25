@@ -199,10 +199,10 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			Product caramelStromboli = new Product("Sweet Caramel Stromboli"
 					, "Our fresh dough covered with special garlic sauce "
 							+ "and topped with mozarella cheese"
-					, "Cheesesticks.jpg"
+					, "SweetCaramel.jpg"
 					, ApplicationConstants.IMAGE_LOCATION
 					, sidesProductId);
-			
+			 
 			productRepository.save(caramelStromboli);
 			
 			sizeNPriceRepository.save(new SizeNPrice("7pcs", "3.7", caramelStromboli.getProductId()));

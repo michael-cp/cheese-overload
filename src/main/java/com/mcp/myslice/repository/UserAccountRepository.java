@@ -11,4 +11,5 @@ import com.mcp.myslice.model.UserAccount;
 @Transactional
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
 	List<UserAccount> findByLastName(String lastName);
+	UserAccount findByEmailAddress(String emailAddress);
 }
