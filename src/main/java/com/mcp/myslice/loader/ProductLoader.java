@@ -53,19 +53,6 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			Long drinksProductId = dataTypeRepository.findByTypeName("Drinks").getDataTypeId();
 			
 			
-			Product meatOverload = new Product("All-Meat Overload"
-					, "The ultimate combination of tasty pepperoni, italian sausage, ham, "
-							+ "freshly slices mushrooms, onions, green peppers and black olives"
-						, "MeatOverload.jpg"
-						, ApplicationConstants.IMAGE_LOCATION
-						, pizzaProductId);
-			
-			productRepository.save(meatOverload);
-			
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "8", meatOverload.getProductId()));
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "9.4", meatOverload.getProductId()));
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "10.5", meatOverload.getProductId()));
-
 			Product texasHeat = new Product("Texas Heat"
 					, "Ground beef, crispy bacon bits, onions, green peppers "
 							+ "and spicy jalapeño peppers "
@@ -79,20 +66,6 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "7.4", texasHeat.getProductId()));
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "9.5", texasHeat.getProductId()));
 
-			Product baconMelt = new Product("Cheesy Bacon Melt"
-					, "Gooey melty goodness made out of creamy potato mousse, generous "
-							+ "serving of cheese and topped with crispy bacon bits for "
-							+ "a perfect cheeselicious treat."
-						, "CheesyBaconMelt.jpg"
-						, ApplicationConstants.IMAGE_LOCATION
-						, pizzaProductId);
-			
-			productRepository.save(baconMelt);
-			
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "8", baconMelt.getProductId()));
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "9.4", baconMelt.getProductId()));
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "10.5", baconMelt.getProductId()));
-			
 			Product chickenBbq = new Product("Chicken BBQ"
 					, "Tender grilled chicken, bacon bits and onions combined "
 							+ "with a sweet and tangy BBQ sauce"
@@ -105,18 +78,6 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "6.5", chickenBbq.getProductId()));
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "7.4", chickenBbq.getProductId()));
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "9.5", chickenBbq.getProductId()));
-			
-			Product simplyCheese = new Product("Simply Cheese"
-					, "Mild and delicate mozarella cheese yet full bodied in flavor"
-						, "SimplyCheese.jpg"
-						, ApplicationConstants.IMAGE_LOCATION
-						, pizzaProductId); 
-			
-			productRepository.save(simplyCheese);
-			
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "6.5", simplyCheese.getProductId()));
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "7.4", simplyCheese.getProductId()));
-			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "9.5", simplyCheese.getProductId()));
 			
 			Product gardenSpecial = new Product("Garden Special"
 					, "Garden-fresh mushrooms, juicy tomatoes, crunchy green "
@@ -157,9 +118,48 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "9.4", hawaiian.getProductId()));
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "10.5", hawaiian.getProductId()));
 			
+			Product simplyCheese = new Product("Simply Cheese"
+					, "Mild and delicate mozarella cheese yet full bodied in flavor"
+						, "SimplyCheese.jpg"
+						, ApplicationConstants.IMAGE_LOCATION
+						, pizzaProductId); 
+			
+			productRepository.save(simplyCheese);
+			
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "6.5", simplyCheese.getProductId()));
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "7.4", simplyCheese.getProductId()));
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "9.5", simplyCheese.getProductId()));
+			
+			Product baconMelt = new Product("Cheesy Bacon Melt"
+					, "Gooey melty goodness made out of creamy potato mousse, generous "
+							+ "serving of cheese and topped with crispy bacon bits for "
+							+ "a perfect cheeselicious treat."
+						, "CheesyBaconMelt.jpg"
+						, ApplicationConstants.IMAGE_LOCATION
+						, pizzaProductId);
+			
+			productRepository.save(baconMelt);
+			
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "8", baconMelt.getProductId()));
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "9.4", baconMelt.getProductId()));
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "10.5", baconMelt.getProductId()));
+						 
+			Product meatOverload = new Product("All-Meat Overload"
+					, "The ultimate combination of tasty pepperoni, italian sausage, ham, "
+							+ "freshly slices mushrooms, onions, green peppers and black olives"
+						, "MeatOverload.jpg"
+						, ApplicationConstants.IMAGE_LOCATION
+						, pizzaProductId);
+			
+			productRepository.save(meatOverload);
+			
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.SMALL_PIZZA, "8", meatOverload.getProductId()));
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.MEDIUM_PIZZA, "9.4", meatOverload.getProductId()));
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.LARGE_PIZZA, "10.5", meatOverload.getProductId()));
+
 			
 			/** ------------------------- Sides Section -------------------------- **/
-			
+			 
 			Product flavoredWings = new Product("Flavored Wings"
 					, "Savor the sizzle of plump and juicy flavored wings in the "
 							+ "following flavors: Soy Honey, Hickory BBQ, Buffalo"
@@ -222,9 +222,9 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "3.2", lemonPaeroa.getProductId()));
 			
 			Product fanta = new Product("FANTA 1.5L"
-					, "Create more play in the world and have more fun"
+					, "Create more play in the world"
 					, "6007_Product_Large_Image_en-AU.png"
-					, ApplicationConstants.IMAGE_LOCATION
+					, ApplicationConstants.IMAGE_LOCATION 
 					, drinksProductId);
 					
 			productRepository.save(fanta);
@@ -232,7 +232,7 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "3.2", fanta.getProductId()));
 			
 			Product cocaCola = new Product("COCA COLA 1.5L"
-					, "Enjoy the uplifting taste of the original flavor "
+					, "Enjoy the uplifting taste "
 					, "6002_Product_Large_Image_en-AU.png"
 					, ApplicationConstants.IMAGE_LOCATION
 					, drinksProductId);
@@ -251,10 +251,19 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "3.2", cokeZero.getProductId()));
 			
+			Product schweppes = new Product("SCHWEPPES DUET 1.5L"
+					, "Sparkling Fruit flavour drink"
+					, "6011_Product_Large_Image_en-AU.png"
+					, ApplicationConstants.IMAGE_LOCATION
+					, drinksProductId);
+			
+			productRepository.save(schweppes);
+			
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "3.2", schweppes.getProductId()));
+			
 			Product kiwiBlue = new Product("KIWI BLUE STILL WATER"
-					, "Kiwi Blue is sourced from specially selected "
-						+ "New Zealand springs, to keeps you hydrated "
-					, "6013_Product_Large_Image_en-AU.png"
+					, "From New Zealand Springs"
+					, "6013_Product_Large_Image_en-AU.png" 
 					, ApplicationConstants.IMAGE_LOCATION
 					, drinksProductId);
 			
@@ -262,17 +271,36 @@ public class ProductLoader implements ApplicationListener<ContextRefreshedEvent>
 			
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "3.2", kiwiBlue.getProductId()));
 			
+			Product sprite = new Product("SPRITE 420ml"
+					, "Citrus, natural, cool, & clear"
+					, "6019_Product_Large_Image_en-AU.png" 
+					, ApplicationConstants.IMAGE_LOCATION
+					, drinksProductId);
+			
+			productRepository.save(sprite);
+			
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "2", sprite.getProductId()));
+			
+			Product keri = new Product("KERI PULPY JUICE 350ML"
+					, "Start with something good."
+					, "6025_Product_Large_Image_en-AU.png" 
+					, ApplicationConstants.IMAGE_LOCATION
+					, drinksProductId);
+			
+			productRepository.save(keri);
+			
+			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "2", keri.getProductId()));
+			
 			Product stillPump = new Product("STILL PUMP 750ML"
 					, "Pump fuels a greater thirst for life. "
 					, "6069_Product_Large_Image_en-AU.png"
 					, ApplicationConstants.IMAGE_LOCATION
 					, drinksProductId);
-			
+			 
 			productRepository.save(stillPump);
 			
 			sizeNPriceRepository.save(new SizeNPrice(ApplicationConstants.DEFAULT_SIZE, "2.8", stillPump.getProductId()));
-			
-			
+ 			
 		} 
 		
 	}

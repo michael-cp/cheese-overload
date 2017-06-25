@@ -9,5 +9,6 @@ import com.mcp.myslice.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 	public List<Product> findByActive(String active);
+	public List<Product> findByProductTypeId(Long productTypeId);
 
 }

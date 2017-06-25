@@ -34,6 +34,12 @@ public class ProductController {
 		return productRepository.findByActive(ApplicationConstants.ACTIVE_YES);
 	}
 
+	@RequestMapping(value = "products/type/{id}" , method = RequestMethod.GET)
+	public List<Product> getByTypelist(@PathVariable Long id){
+//		return productRepository.findAll();
+		return productRepository.findByProductTypeId(id);
+	}
+	
 	@RequestMapping(value = "products" , method = RequestMethod.POST)
 	public Product create(@RequestBody Product product){
 		return productRepository.saveAndFlush(product);
