@@ -7,4 +7,6 @@ import com.mcp.myslice.model.DataType;
 public interface DataTypeRepository extends JpaRepository<DataType, Long>{
 
 
+	public DataType findByTypeName(String typename);
+	
 }

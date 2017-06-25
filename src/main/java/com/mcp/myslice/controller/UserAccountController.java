@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mcp.myslice.model.UserAccount;
 import com.mcp.myslice.repository.UserAccountRepository;
 import com.mcp.myslice.utils.ApplicationConstants;
+import com.mcp.myslice.utils.Encryptor;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -21,6 +23,8 @@ public class UserAccountController {
 	@Autowired
 	private UserAccountRepository userAccountRepository;
 
+	private Encryptor encryptor = new Encryptor();
+
 	@RequestMapping(value = "useraccounts" , method = RequestMethod.GET)
 	public List<UserAccount> list(){
 		return userAccountRepository.findAll();
@@ -28,6 +32,7 @@ public class UserAccountController {
 
 	@RequestMapping(value = "useraccounts" , method = RequestMethod.POST)
 	public UserAccount create(@RequestBody UserAccount userAccount){
+		userAccount.setPassword(encryptor.getSecurePassword(userAccount.getPassword()));
 		return userAccountRepository.saveAndFlush(userAccount);
 	}
 
@@ -39,6 +44,8 @@ public class UserAccountController {
 	@RequestMapping(value = "useraccounts/{id}" , method = RequestMethod.PUT)
 	public UserAccount update(@PathVariable Long id, @RequestBody UserAccount userAccount){
 		UserAccount existingUserAccount = userAccountRepository.findOne(id);
+
+		userAccount.setPassword(encryptor.getSecurePassword(userAccount.getPassword()));
 		BeanUtils.copyProperties(userAccount, existingUserAccount);
 		return userAccountRepository.saveAndFlush(existingUserAccount);
 	}
@@ -61,5 +68,26 @@ public class UserAccountController {
 		userAccountRepository.saveAndFlush(existingUserAccount);
 
 		return existingUserAccount;
-	}	
+	}
+
+
+	@PostMapping( "/auth")
+//	@RequestMapping(value = "/auth", method = RequestMethod.POST, produces = "application/json")
+	public String loginAuthentication(@RequestBody UserAccount userAccount) {
+		UserAccount dbAccount = null;
+		
+		try {
+			dbAccount = userAccountRepository.findByEmailAddress(userAccount.getEmailAddress());
+			if(dbAccount.getPassword() != null && !dbAccount.getPassword().isEmpty()){
+				if(dbAccount.getPassword().equalsIgnoreCase(encryptor.getSecurePassword(userAccount.getPassword()))){
+					return "[{\"status\":\"passed\"}]";
+				}
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return "[{\"status\":\"failed\"}]";
+	}
 }
